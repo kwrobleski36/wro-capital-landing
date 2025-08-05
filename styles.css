@@ -108,8 +108,17 @@ h1 {
   text-decoration: underline;
 }
 
-.cloudflare-badge img {
+.cloudflare-badge {
   margin-top: 10px;
+  font-size: 0.9em;
+  color: #BFC1C2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cloudflare-badge img {
   height: 30px;
   opacity: 0.85;
 }
