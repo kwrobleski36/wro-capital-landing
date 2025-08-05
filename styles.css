@@ -122,3 +122,39 @@ h1 {
   height: 30px;
   opacity: 0.85;
 }
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  body {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 40px;
+    height: auto;
+  }
+
+  .logo-row {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .logo {
+    width: 220px;
+  }
+
+  .small-logo {
+    width: 140px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .cloudflare-badge {
+    flex-direction: column;
+  }
+}
