@@ -1,7 +1,11 @@
-/* Reset & Base */
-body {
+/* Base Reset & Setup */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   background-color: #000;
   color: #FFD700;
   font-family: 'Segoe UI', sans-serif;
@@ -11,34 +15,24 @@ body {
   justify-content: center;
 }
 
-/* Horizontal Logo Row */
+/* Main Row Container */
 .logo-row {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap; /* allows wrapping on small screens */
-}
-
-/* Shared Partner Logos (52 Studios + Sparrow Analytics) */
-.partner-logo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.small-logo {
-  width: 180px;
+  gap: 50px;
   max-width: 100%;
+  padding: 20px;
+  flex-wrap: nowrap; /* force side-by-side on desktop */
 }
 
-/* Main Wro Capital Section */
-.main-logo-wrap {
+/* Individual Sections */
+.partner-logo-wrap, .main-logo-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  color: #FFD700;
+  justify-content: center;
 }
 
 .logo {
@@ -47,18 +41,24 @@ body {
   margin-bottom: 20px;
 }
 
+.small-logo {
+  width: 180px;
+  max-width: 100%;
+}
+
+/* Main Text Styling */
 h1 {
   font-size: 2.5em;
-  margin: 0;
+  color: #FFD700;
+  margin-bottom: 10px;
 }
 
 .tagline {
   color: #BFC1C2;
-  margin-top: 10px;
   font-size: 1.2em;
 }
 
-/* Dividers Between Logos */
+/* Divider Between Logos */
 .divider {
   width: 2px;
   height: 160px;
