@@ -1,37 +1,35 @@
 body {
-  background-color: #000;
+  background-color: black;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.full-page-wrapper {
+  padding: 0;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.logo-row {
+.logo-container {
   display: flex;
   align-items: center;
-  gap: 30px;
-}
-
-.logo {
-  width: 300px;
 }
 
 .small-logo {
   width: 180px;
 }
 
+.main-logo {
+  width: 300px;
+}
+
 .divider {
   width: 2px;
   height: 180px;
   background-color: white;
+  margin: 0 20px;
 }
 
-.main-logo-wrap {
+.main-logo-section {
   display: flex;
   flex-direction: column;
   align-items: center;
