@@ -63,25 +63,6 @@ h1 {
   color: #BFC1C2;
   font-size: 1.2em;
 }
-.site-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 20px 0;
-  background-color: #111;
-  color: #BFC1C2;
-  font-size: 0.9em;
-  text-align: center;
-}
-
-.site-footer a {
-  color: #FFD700;
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
-}
 
 /* Divider Between Logos */
 .divider {
@@ -89,33 +70,52 @@ h1 {
   height: 160px;
   background-color: #FFFFFF;
 }
+
+/* Footer Styling */
 .site-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   padding: 20px 0;
   background-color: #111;
   color: #BFC1C2;
   font-size: 0.85em;
   text-align: center;
-  width: 100%;
 }
 
-.site-footer a {
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  list-style: disc;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.footer-links li {
+  list-style: disc;
+}
+
+.footer-links a {
   color: #FFD700;
   text-decoration: none;
-  margin: 0 6px;
 }
 
-.site-footer a:hover {
+.footer-links a:hover {
   text-decoration: underline;
 }
 
 .cloudflare-badge {
-  margin-top: 10px;
-  font-size: 0.9em;
-  color: #BFC1C2;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 8px;
+  margin-bottom: 10px;
 }
 
 .cloudflare-badge img {
