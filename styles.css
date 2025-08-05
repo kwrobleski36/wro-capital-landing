@@ -63,6 +63,25 @@ h1 {
   color: #BFC1C2;
   font-size: 1.2em;
 }
+.site-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  background-color: #111;
+  color: #BFC1C2;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.site-footer a {
+  color: #FFD700;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
 
 /* Divider Between Logos */
 .divider {
