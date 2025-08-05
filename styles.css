@@ -3,22 +3,15 @@ body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
-  flex-direction: column;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.banner {
+.logo-row {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 30px;
 }
 
 .logo {
@@ -30,15 +23,20 @@ body {
 }
 
 .divider {
-  width: 3px;
-  height: 150px;
+  width: 2px;
+  height: 180px;
   background-color: white;
-  margin: 0 20px;
+}
+
+.main-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tagline {
   color: #BFC1C2;
   font-size: 1.2em;
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: center;
 }
