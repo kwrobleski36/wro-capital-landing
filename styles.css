@@ -1,21 +1,24 @@
 body {
   background-color: #000;
-  color: #FFD700;
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  position: relative;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .banner {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .logo {
@@ -24,7 +27,6 @@ body {
 
 .small-logo {
   width: 180px;
-  margin-right: 20px;
 }
 
 .divider {
@@ -34,17 +36,9 @@ body {
   margin: 0 20px;
 }
 
-.container {
-  text-align: center;
-}
-
-h1 {
-  font-size: 2.5em;
-  margin: 0;
-}
-
 .tagline {
   color: #BFC1C2;
-  margin-top: 10px;
   font-size: 1.2em;
+  margin-top: 20px;
+  text-align: center;
 }
