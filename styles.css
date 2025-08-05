@@ -1,4 +1,4 @@
-/* Base Reset & Setup */
+/* Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -15,38 +15,44 @@ body {
   justify-content: center;
 }
 
-/* Main Row Container */
+/* Horizontal Layout Container */
 .logo-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 50px;
-  max-width: 100%;
+  gap: 40px;
   padding: 20px;
-  flex-wrap: nowrap; /* force side-by-side on desktop */
+  flex-wrap: nowrap;
 }
 
-/* Individual Sections */
-.partner-logo-wrap, .main-logo-wrap {
+/* Main Center Logo (Wro Capital Groups) */
+.main-logo-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
 .logo {
-  width: 300px;
+  width: 280px;
   max-width: 100%;
   margin-bottom: 20px;
 }
 
+/* Side Logos (52 Studios & Sparrow Analytics) */
+.partner-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .small-logo {
-  width: 180px;
+  width: 150px;
   max-width: 100%;
 }
 
-/* Main Text Styling */
+/* Text Styling */
 h1 {
   font-size: 2.5em;
   color: #FFD700;
