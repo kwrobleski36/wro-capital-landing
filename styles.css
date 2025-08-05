@@ -41,3 +41,25 @@ body {
   margin-top: 10px;
   text-align: center;
 }
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+}
+
+.main-logo-wrap, .partner-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divider {
+  width: 2px;
+  height: 180px;
+  background-color: #FFF;
+}
+
+.small-logo {
+  width: 180px;
+}
