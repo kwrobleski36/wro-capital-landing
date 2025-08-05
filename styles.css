@@ -1,0 +1,30 @@
+body {
+  background-color: #000;
+  color: #FFD700;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0;
+}
+
+.tagline {
+  color: #BFC1C2;
+  margin-top: 10px;
+  font-size: 1.2em;
+}
