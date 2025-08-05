@@ -89,3 +89,27 @@ h1 {
   height: 160px;
   background-color: #FFFFFF;
 }
+.site-footer {
+  padding: 20px 0;
+  background-color: #111;
+  color: #BFC1C2;
+  font-size: 0.85em;
+  text-align: center;
+  width: 100%;
+}
+
+.site-footer a {
+  color: #FFD700;
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.cloudflare-badge img {
+  margin-top: 10px;
+  height: 30px;
+  opacity: 0.8;
+}
