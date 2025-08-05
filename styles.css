@@ -1,65 +1,66 @@
+/* Reset & Base */
 body {
-  background-color: black;
   margin: 0;
   padding: 0;
+  background-color: #000;
+  color: #FFD700;
+  font-family: 'Segoe UI', sans-serif;
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-family: 'Segoe UI', sans-serif;
+  justify-content: center;
 }
 
-.logo-container {
+/* Horizontal Logo Row */
+.logo-row {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap; /* allows wrapping on small screens */
+}
+
+/* Shared Partner Logos (52 Studios + Sparrow Analytics) */
+.partner-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .small-logo {
   width: 180px;
+  max-width: 100%;
 }
 
-.main-logo {
-  width: 300px;
-}
-
-.divider {
-  width: 2px;
-  height: 180px;
-  background-color: white;
-  margin: 0 20px;
-}
-
-.main-logo-section {
+/* Main Wro Capital Section */
+.main-logo-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  color: #FFD700;
+}
+
+.logo {
+  width: 300px;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0;
 }
 
 .tagline {
   color: #BFC1C2;
-  font-size: 1.2em;
   margin-top: 10px;
-  text-align: center;
-}
-.logo-row {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  justify-content: center;
+  font-size: 1.2em;
 }
 
-.main-logo-wrap, .partner-logo-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+/* Dividers Between Logos */
 .divider {
   width: 2px;
-  height: 180px;
-  background-color: #FFF;
-}
-
-.small-logo {
-  width: 180px;
+  height: 160px;
+  background-color: #FFFFFF;
 }
