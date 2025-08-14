@@ -5,14 +5,23 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #000;
   color: #FFD700;
   font-family: 'Segoe UI', sans-serif;
-  height: 100vh;
+
+  /* Center the row; leave room for footer */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Prevent overlap with absolute footer on small screens */
+  padding-bottom: 120px;
 }
 
 /* Horizontal Layout Container */
@@ -40,11 +49,12 @@ body {
   margin-bottom: 20px;
 }
 
-/* Side Logos (52 Studios & Sparrow Analytics) */
+/* Side Logos (Studio 52 & Sparrow Analytics) */
 .partner-logo-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; /* enable positioning for hover card */
 }
 
 .small-logo {
@@ -71,6 +81,64 @@ h1 {
   background-color: #FFFFFF;
 }
 
+/* --- Studio 52 Hover Card --- */
+.hover-trigger { outline: none; }
+.hover-trigger:focus { outline: 2px solid #FFD70055; outline-offset: 4px; }
+
+.hover-card {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translate(-50%, 8px) scale(0.98);
+  width: 320px;
+  max-width: 80vw;
+
+  background: #111;
+  color: #BFC1C2;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.45);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  z-index: 10;
+}
+
+.hover-trigger:hover .hover-card,
+.hover-trigger:focus-within .hover-card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.hover-card-title {
+  color: #FFD700;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.hover-card-body p + p {
+  margin-top: 6px;
+}
+
+.hover-card-contact a {
+  color: #FFD700;
+  text-decoration: none;
+}
+.hover-card-contact a:hover { text-decoration: underline; }
+
+.hover-card-fineprint {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: #8e9196;
+  line-height: 1.35;
+}
+
 /* Footer Styling */
 .site-footer {
   position: absolute;
@@ -89,7 +157,8 @@ h1 {
 }
 
 .footer-links {
-  list-style: disc;
+  /* No bullets in a horizontal footer list */
+  list-style: none;
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -97,64 +166,6 @@ h1 {
   margin: 10px 0;
 }
 
-.footer-links li {
-  list-style: disc;
-}
+.footer-links li { list-style: none; }
 
 .footer-links a {
-  color: #FFD700;
-  text-decoration: none;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.cloudflare-badge {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.cloudflare-badge img {
-  height: 30px;
-  opacity: 0.85;
-}
-/* Mobile Responsiveness */
-@media screen and (max-width: 768px) {
-  body {
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 40px;
-    height: auto;
-  }
-
-  .logo-row {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .divider {
-    display: none;
-  }
-
-  .logo {
-    width: 220px;
-  }
-
-  .small-logo {
-    width: 140px;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    gap: 12px;
-    margin: 20px 0;
-  }
-
-  .cloudflare-badge {
-    flex-direction: column;
-  }
-}
