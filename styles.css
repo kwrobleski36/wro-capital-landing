@@ -14,13 +14,13 @@ body {
   color: #FFD700;
   font-family: 'Segoe UI', sans-serif;
 
-  /* Center the row; leave room for footer */
+  /* Center the row; leave room for absolute footer */
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* Prevent overlap with absolute footer on small screens */
+  /* Prevent overlap with footer on short viewports */
   padding-bottom: 120px;
 }
 
@@ -108,8 +108,10 @@ h1 {
   z-index: 10;
 }
 
+/* Show card on hover, focus, or JS toggle (.open) */
 .hover-trigger:hover .hover-card,
-.hover-trigger:focus-within .hover-card {
+.hover-trigger:focus-within .hover-card,
+.hover-trigger.open .hover-card {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -122,9 +124,7 @@ h1 {
   margin-bottom: 6px;
 }
 
-.hover-card-body p + p {
-  margin-top: 6px;
-}
+.hover-card-body p + p { margin-top: 6px; }
 
 .hover-card-contact a {
   color: #FFD700;
@@ -137,6 +137,11 @@ h1 {
   font-size: 0.78rem;
   color: #8e9196;
   line-height: 1.35;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hover-card { transition: none; transform: translate(-50%, 0); }
 }
 
 /* Footer Styling */
@@ -157,8 +162,7 @@ h1 {
 }
 
 .footer-links {
-  /* No bullets in a horizontal footer list */
-  list-style: none;
+  list-style: none; /* polished: no bullets */
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -169,3 +173,64 @@ h1 {
 .footer-links li { list-style: none; }
 
 .footer-links a {
+  color: #FFD700;
+  text-decoration: none;
+}
+.footer-links a:hover { text-decoration: underline; }
+
+.cloudflare-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.cloudflare-badge img {
+  height: 30px;
+  opacity: 0.85;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  body {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 40px;
+    min-height: 100vh;
+    height: auto;
+    padding-bottom: 140px; /* extra space for footer */
+  }
+
+  .logo-row {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .divider { display: none; }
+
+  .logo { width: 220px; }
+  .small-logo { width: 140px; }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .cloudflare-badge { flex-direction: column; }
+
+  /* On narrow screens, place card below the tile for readability */
+  .hover-card {
+    left: 50%;
+    bottom: auto;
+    top: calc(100% + 12px);
+    transform: translate(-50%, -8px) scale(0.98);
+  }
+
+  .hover-trigger:hover .hover-card,
+  .hover-trigger:focus-within .hover-card,
+  .hover-trigger.open .hover-card {
+    transform: translate(-50%, 0) scale(1);
+  }
+}
