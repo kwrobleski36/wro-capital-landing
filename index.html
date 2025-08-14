@@ -1,20 +1,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
- <title>Wro Capital Groups</title>
-  <link rel="stylesheet" href="styles.css"> <!-- ✅ PUT THIS HERE -->
+  <title>Wro Capital Groups</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="logo-row">
-    <div class="partner-logo-wrap">
-      <img src="52studios-logo.png" alt="52 Studios Logo" class="small-logo">
+    <!-- Studio 52 tile with hover/tap card -->
+    <div class="partner-logo-wrap hover-trigger" tabindex="0" aria-describedby="studio52-card">
+      <!-- Use your new file name here -->
+      <img src="studio-52-logo.png" alt="Studio 52 Logo" class="small-logo">
+      <div id="studio52-card" class="hover-card" role="note" aria-hidden="true">
+        <div class="hover-card-title">Studio 52</div>
+        <div class="hover-card-body">
+          <p>PS5 game development.</p>
+          <p>A modern take on Spades with online multiplayer, single-player AI, and clean visuals.</p>
+          <p><em>Independent developer.</em></p>
+          <p class="hover-card-contact">Contact: <a href="mailto:kevin@wcgroups.com">kevin@wcgroups.com</a></p>
+        </div>
+        <div class="hover-card-fineprint">
+          “PlayStation” and “PS5” are trademarks or registered trademarks of Sony Interactive Entertainment Inc. Studio 52 is an independent developer and is not affiliated with or endorsed by Sony Interactive Entertainment.
+        </div>
+      </div>
     </div>
 
     <div class="divider"></div>
 
     <div class="main-logo-wrap">
       <img src="wcgroups-logo.png" alt="Wro Capital Groups Logo" class="logo">
- 
       <p class="tagline">Innovation. Strategy. Growth.</p>
     </div>
 
@@ -24,28 +37,27 @@
       <img src="sparrow-logo.png" alt="Sparrow Analytics Logo" class="small-logo">
     </div>
   </div>
+
   <footer class="site-footer">
-  <div class="footer-content">
+    <div class="footer-content">
+      <p class="cloudflare-badge">
+        Powered by:
+        <a href="https://www.cloudflare.com" target="_blank" rel="noopener noreferrer">
+          <img src="cloudflare-logo.png" alt="Powered by Cloudflare" height="30">
+        </a>
+      </p>
 
-    <p class="cloudflare-badge">
-      Powered by:
-      <a href="https://www.cloudflare.com" target="_blank" rel="noopener noreferrer">
-        <img src="cloudflare-logo.png" alt="Powered by Cloudflare" height="30">
-      </a>
-    </p>
+      <p>© <span id="year"></span> Wro Capital Groups, LLC. All rights reserved.</p>
 
-    <p>© 2025 Wro Capital Groups, LLC. All rights reserved.</p>
-
-    <ul class="footer-links">
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><a href="terms.html">Terms of Use</a></li>
-      <li><a href="mailto:info@wcgroups.com">Contact</a></li>
-    </ul>
-
-  </div>
-</footer>
-
-
-
-
+      <ul class="footer-links">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Use</a></li>
+        <li><a href="mailto:info@wcgroups.com">Contact</a></li>
+      </ul>
+    </div>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
 </body>
+</html>
