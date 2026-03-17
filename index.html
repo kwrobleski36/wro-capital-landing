@@ -26,7 +26,7 @@ body::before{
 /* ── GILDAN TOOLTIP ── */
 .gildan-pill{position:relative;cursor:help;border-bottom:1px dashed rgba(201,162,39,.5)}
 .gildan-pill .gtip{
-  display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+  display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
   width:210px;background:#0a1828;border:1px solid var(--border);border-radius:10px;
   padding:12px 14px;z-index:300;pointer-events:none;
   box-shadow:0 8px 32px rgba(0,0,0,.7);text-align:left;
@@ -35,7 +35,7 @@ body::before{
 .gtip h4{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
 .gtip li{font-size:.7rem;color:var(--muted);list-style:none;padding:2px 0;padding-left:14px;position:relative;line-height:1.4}
 .gtip li::before{content:'✓';color:var(--teal);position:absolute;left:0;font-size:.65rem}
-.gtip-arrow{position:absolute;top:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:#0a1828;border-left:1px solid var(--border);border-top:1px solid var(--border)}
+.gtip-arrow{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:#0a1828;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
 
 /* ── CART ── */
 .cart-btn{
@@ -144,7 +144,7 @@ nav{
 .nav-contact:hover{color:var(--gold)}
 .hero{
   position:relative;z-index:1;text-align:center;
-  padding:64px 24px 48px;overflow:hidden;
+  padding:64px 24px 48px;
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
