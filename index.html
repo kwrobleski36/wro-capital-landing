@@ -26,16 +26,16 @@ body::before{
 /* ── GILDAN TOOLTIP ── */
 .gildan-pill{position:relative;cursor:help;border-bottom:1px dashed rgba(201,162,39,.5)}
 .gildan-pill .gtip{
-  display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
-  width:230px;background:#0a1828;border:1px solid var(--border);border-radius:10px;
-  padding:13px 15px;z-index:300;pointer-events:none;
+  display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+  width:210px;background:#0a1828;border:1px solid var(--border);border-radius:10px;
+  padding:12px 14px;z-index:300;pointer-events:none;
   box-shadow:0 8px 32px rgba(0,0,0,.7);text-align:left;
 }
 .gildan-pill:hover .gtip{display:block}
-.gtip h4{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
-.gtip li{font-size:.74rem;color:var(--muted);list-style:none;padding:2px 0;padding-left:14px;position:relative;line-height:1.4}
-.gtip li::before{content:'✓';color:var(--teal);position:absolute;left:0;font-size:.68rem}
-.gtip-arrow{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:#0a1828;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.gtip h4{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.08em;color:var(--gold);margin-bottom:6px}
+.gtip li{font-size:.7rem;color:var(--muted);list-style:none;padding:2px 0;padding-left:14px;position:relative;line-height:1.4}
+.gtip li::before{content:'✓';color:var(--teal);position:absolute;left:0;font-size:.65rem}
+.gtip-arrow{position:absolute;top:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:#0a1828;border-left:1px solid var(--border);border-top:1px solid var(--border)}
 
 /* ── CART ── */
 .cart-btn{
@@ -274,11 +274,6 @@ nav{
 .paypal-btn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(248,156,0,.45)}
 .paypal-btn:active{transform:translateY(0)}
 .paypal-note{text-align:center;font-size:.73rem;color:var(--muted);margin-top:10px;line-height:1.5}
-.setup-banner{
-  background:rgba(201,162,39,.08);border:1px solid rgba(201,162,39,.3);
-  border-radius:8px;padding:10px 14px;margin-bottom:14px;
-  font-size:.78rem;color:var(--gold);text-align:center;line-height:1.5;
-}
 footer{
   position:relative;z-index:1;border-top:1px solid var(--border);
   padding:32px 24px;text-align:center;
@@ -323,24 +318,14 @@ footer{
   <div class="hero-pills">
     <span class="pill gildan-pill">Gildan 5000 Heavy Cotton
       <div class="gtip">
-        <h4>Gildan 5000 Heavy Cotton</h4>
-        <ul>
-          <li>100% pre-shrunk ring-spun cotton</li>
-          <li>5.3 oz/yd² heavyweight fabric</li>
-          <li>Seamless double-needle ⅞" collar</li>
-          <li>Taped neck &amp; shoulders for durability</li>
-          <li>Double-needle sleeves &amp; bottom hem</li>
-          <li>Tear-away label for comfort</li>
-          <li>Available in S–3XL</li>
-        </ul>
-        <h4 style="margin-top:10px">Professional On-Demand Printing</h4>
-        <ul>
-          <li>Printed by Jakprints, Cleveland OH</li>
-          <li>Direct-to-garment (DTG) process</li>
-          <li>Vibrant, wash-resistant full-color prints</li>
-          <li>Each shirt printed fresh on demand</li>
-        </ul>
         <div class="gtip-arrow"></div>
+        <h4>Gildan 5000</h4>
+        <ul>
+          <li>100% preshrunk cotton, 5.3 oz</li>
+          <li>Double-needle stitching throughout</li>
+          <li>Tear-away label for comfort</li>
+          <li>DTG printed by Jakprints, Cleveland OH</li>
+        </ul>
       </div>
     </span>
     <span class="pill">48 Nations</span>
@@ -936,20 +921,7 @@ footer{
       <span class="price-val">$<span id="price-display">39.99</span></span>
     </div>
 
-    <div class="setup-banner">
-      &#9888;&#65039; Store launching soon!<br>
-      Questions? <a href="mailto:kevin@wcgroups.com" style="color:var(--gold)">kevin@wcgroups.com</a>
-    </div>
 
-    <!--
-      ── PAYPAL SETUP ──────────────────────────────────────
-      1. Ensure your PayPal Business email matches
-         PAYPAL_EMAIL in the <script> section below
-      2. In PayPal dashboard: Settings > Selling Tools >
-         Shipping Calculations — configure rates by country
-      3. Remove the .setup-banner div above when live
-      ─────────────────────────────────────────────────────
-    -->
     <button class="add-to-cart-btn" id="add-to-cart-btn">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
