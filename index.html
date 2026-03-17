@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WC Groups | FIFA World Cup 2026 Tees</title>
+<title>World Cup 2026 Shirts | Rep Your Nation | WC Groups</title>
 
 <!-- ── SEO & Open Graph ── -->
-<meta name="description" content="Official supporter tees for every nation in the 2026 FIFA World Cup. 48 nations, 12 groups, full front & back print on Gildan 5000 heavy cotton. Worldwide shipping.">
-<meta name="keywords" content="World Cup 2026 shirt, FIFA 2026 tee, soccer supporter shirt, World Cup group shirt">
+<meta name="description" content="Shop official FIFA World Cup 2026 supporter tees for all 48 nations. Full front & back group print on Gildan 5000 heavy cotton. $39.99 with worldwide shipping. Groups A–L available.">
+<meta name="keywords" content="World Cup 2026 shirt, FIFA 2026 tee, World Cup supporter shirt, World Cup group shirt, soccer fan shirt 2026, football supporter tee, buy World Cup shirt, WC 2026 merchandise, FIFA shirt USA Canada Mexico">
 <link rel="canonical" href="https://wcgroups.com/">
 
 <!-- Open Graph (Google, Facebook, iMessage previews) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wcgroups.com/">
-<meta property="og:title" content="WC Groups | FIFA World Cup 2026 Supporter Tees">
-<meta property="og:description" content="Rep your nation at the 2026 World Cup. Professional on-demand printed tees for all 48 nations. $39.99 · Worldwide shipping.">
+<meta property="og:title" content="World Cup 2026 Shirts — Rep Your Nation | WC Groups">
+<meta property="og:description" content="Official supporter tees for all 48 nations at the 2026 FIFA World Cup. Full front & back group print, Gildan 5000 heavy cotton, $39.99, worldwide shipping.">
 <meta property="og:image" content="https://wcgroups.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,9 +22,37 @@
 
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="WC Groups | FIFA World Cup 2026 Supporter Tees">
-<meta name="twitter:description" content="Rep your nation at the 2026 World Cup. 48 nations, $39.99, worldwide shipping.">
+<meta name="twitter:title" content="World Cup 2026 Shirts — Rep Your Nation | WC Groups">
+<meta name="twitter:description" content="Official supporter tees for all 48 nations. $39.99 · Full front & back print · Worldwide shipping.">
 <meta name="twitter:image" content="https://wcgroups.com/og-image.png">
+
+<!-- Google / Search extras -->
+<meta name="robots" content="index, follow">
+<meta name="author" content="WC Groups">
+<meta name="theme-color" content="#c9a227">
+
+<!-- Structured data — helps Google show rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "WC Groups",
+  "url": "https://wcgroups.com",
+  "description": "Official FIFA World Cup 2026 supporter tees for all 48 nations. Full front and back group print on Gildan 5000 heavy cotton.",
+  "image": "https://wcgroups.com/og-image.png",
+  "priceRange": "$39.99",
+  "currenciesAccepted": "USD",
+  "paymentAccepted": "Credit Card, PayPal",
+  "email": "kevin@wcgroups.com",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "39.99",
+    "availability": "https://schema.org/InStock",
+    "description": "FIFA World Cup 2026 supporter tee — all 48 nations, groups A–L"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
@@ -347,34 +375,54 @@ footer{
 .order-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 .order-panel::-webkit-scrollbar-track{background:transparent}
 
-/* ── PAYPAL MODAL FIXES ── */
-/* Allow PayPal's iframe/modal to scroll properly and fit viewport */
-body.paypal-open{overflow:hidden}
-#paypal-button-container,
-#paypal-cart-button-container{
-  width:100%;
-  min-height:46px;
+/* ── PAYPAL CHECKOUT MODAL ── */
+.pp-modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.72);
+  z-index:500;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .22s;
+  padding:20px;
 }
-/* Override PayPal's iframe container to be scrollable if needed */
-[data-paypal-smart-button-component],
-.paypal-button-container{
-  max-height:none !important;
+.pp-modal-overlay.open{opacity:1;pointer-events:all}
+.pp-modal{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  width:100%;max-width:620px;max-height:90vh;overflow-y:auto;
+  display:flex;flex-direction:column;
+  box-shadow:0 24px 80px rgba(0,0,0,.7);
+  transform:translateY(16px);transition:transform .22s;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
 }
-/* PayPal modal overlay — ensure it's scrollable and full viewport */
-.paypal-overlay-context{
-  position:fixed !important;
-  top:0 !important; left:0 !important;
-  width:100vw !important;
-  height:100vh !important;
-  overflow-y:auto !important;
-  -webkit-overflow-scrolling:touch !important;
-  z-index:2000 !important;
+.pp-modal-overlay.open .pp-modal{transform:translateY(0)}
+.pp-modal::-webkit-scrollbar{width:4px}
+.pp-modal::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.pp-modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:var(--card);z-index:10;
 }
-/* Force PayPal popup to reasonable size */
-iframe.component-frame,
-iframe.zoid-component-frame{
-  max-height:96vh !important;
-  overflow-y:auto !important;
+.pp-modal-header h3{
+  font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.1em;color:var(--gold);
+}
+.pp-back-btn{
+  display:flex;align-items:center;gap:6px;
+  background:none;border:1px solid var(--border);border-radius:7px;
+  color:var(--text);font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;
+  padding:7px 14px;cursor:pointer;transition:all .15s;
+}
+.pp-back-btn:hover{border-color:var(--gold);color:var(--gold)}
+.pp-modal-order-summary{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:14px 24px;background:var(--card2);border-bottom:1px solid var(--border);
+  font-size:.82rem;color:var(--muted);
+}
+.pp-modal-order-summary strong{color:var(--text);font-weight:600}
+.pp-modal-order-summary .pp-price{
+  margin-left:auto;font-family:'Bebas Neue',sans-serif;
+  font-size:1.3rem;letter-spacing:.05em;color:var(--gold);
+}
+.pp-modal-body{padding:24px}
+.pp-modal-note{
+  text-align:center;font-size:.72rem;color:#6a8aaa;
+  margin-top:14px;line-height:1.6;
 }
 
 /* ── CART & CHECKOUT TEXT CONTRAST FIXES ── */
@@ -407,7 +455,7 @@ iframe.zoid-component-frame{
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">WC <span>Groups</span><span class="nav-badge">WC 2026</span></a>
+  <a href="#" class="nav-logo">WC <span>Groups</span><span class="nav-badge">WC 2026 Shirts</span></a>
   <div style="display:flex;align-items:center;gap:16px">
     <a href="mailto:kevin@wcgroups.com" class="nav-contact">kevin@wcgroups.com</a>
     <button class="cart-btn" id="cart-open-btn" aria-label="Open cart">
@@ -1041,17 +1089,14 @@ iframe.zoid-component-frame{
       Add to Cart
     </button>
 
-    <!-- PayPal SDK Buy Now button renders here -->
-    <div id="paypal-button-container" style="margin-bottom:4px"></div>
-
-    <!-- Shown when PayPal card form is open — click to close -->
-    <div id="paypal-dismiss" style="display:none;text-align:center;margin-top:8px">
-      <button onclick="collapsePayPal()" style="background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:.75rem;padding:5px 14px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s"
-        onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
-        onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
-        ✕ Close payment form
-      </button>
-    </div>
+    <!-- Buy Now opens the PayPal modal -->
+    <button class="paypal-btn" id="buy-now-btn" onclick="openPayPalModal('buynow')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.5 21l.9-5.7M7.5 21H4.8L6.9 7.5h5.4c2.1 0 3.6.9 3.6 3 0 3-2.1 4.5-4.8 4.5H8.7L7.5 21z" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10.5 18l.9-5.7m0 0H8.7m2.7 0h1.8c2.7 0 4.8-1.5 4.8-4.5 0-2.1-1.5-3-3.6-3H9.6L7.5 15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+      </svg>
+      Buy Now via PayPal
+    </button>
 
     <p class="paypal-note">
       Shipping calculated at checkout &bull; Worldwide delivery<br>
@@ -1060,6 +1105,31 @@ iframe.zoid-component-frame{
     </p>
   </div>
 
+</div>
+
+<!-- ── PAYPAL CHECKOUT MODAL ── -->
+<div class="pp-modal-overlay" id="pp-modal-overlay">
+  <div class="pp-modal" id="pp-modal">
+    <div class="pp-modal-header">
+      <h3>&#128179; Secure Checkout</h3>
+      <button class="pp-back-btn" onclick="closePayPalModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Back
+      </button>
+    </div>
+    <div class="pp-modal-order-summary" id="pp-modal-summary">
+      <!-- Filled dynamically -->
+    </div>
+    <div class="pp-modal-body">
+      <div id="pp-modal-button-container"></div>
+      <p class="pp-modal-note">
+        Shipping calculated at checkout &bull; Worldwide delivery<br>
+        Allow 7–14 days production + shipping &bull; Secure payments via PayPal
+      </p>
+    </div>
+  </div>
 </div>
 
 <!-- ── CART OVERLAY ── -->
@@ -1086,21 +1156,26 @@ iframe.zoid-component-frame{
       <span>Subtotal</span>
       <span class="cart-subtotal-val" id="cart-subtotal">$0.00</span>
     </div>
-    <!-- PayPal SDK Cart Checkout button renders here -->
-    <div id="paypal-cart-button-container"></div>
+    <!-- PayPal SDK Cart Checkout button opens modal -->
+    <button class="cart-checkout-btn" id="cart-checkout-btn" onclick="openPayPalModal('cart')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.5 21l.9-5.7M7.5 21H4.8L6.9 7.5h5.4c2.1 0 3.6.9 3.6 3 0 3-2.1 4.5-4.8 4.5H8.7L7.5 21z" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Checkout via PayPal
+    </button>
     <p class="cart-note">Shipping &amp; taxes calculated at checkout</p>
   </div>
 </div>
 
 <footer>
-  <div class="footer-logo">WC Groups</div>
+  <div class="footer-logo">WC Groups — World Cup 2026 Shirts</div>
   <div class="footer-sub">
-    Wro Capital Groups &nbsp;&bull;&nbsp; World Cup 2026 Official Supporter Merchandise<br>
+    Official supporter tees for all 48 nations &nbsp;&bull;&nbsp; Groups A–L &nbsp;&bull;&nbsp; $39.99 &nbsp;&bull;&nbsp; Worldwide Shipping<br>
     Printed by Jakprints, Cleveland OH &nbsp;&bull;&nbsp;
     <a href="mailto:kevin@wcgroups.com">kevin@wcgroups.com</a>
     &nbsp;&bull;&nbsp; <a href="#">Privacy</a> &nbsp;&bull;&nbsp; <a href="#">Returns</a><br>
     <span style="font-size:.7rem;opacity:.5;margin-top:4px;display:block">
-      &copy; 2026 Wro Capital Groups. WC Groups is not affiliated with FIFA.
+      &copy; 2026 Wro Capital Groups LLC &bull; WC Groups is not affiliated with FIFA.
       FIFA World Cup 2026&trade; is a trademark of FIFA. Flag images from flagcdn.com.
     </span>
   </div>
@@ -1186,71 +1261,93 @@ function buildOrderTotal(items){
   return total.toFixed(2);
 }
 
-function initPayPalButtons(){
+// ── PAYPAL MODAL ──
+let ppModalMode = 'buynow'; // 'buynow' or 'cart'
+let ppButtonsRendered = false;
+
+function openPayPalModal(mode){
+  if(mode === 'buynow' && !sel){ alert('Please select your nation first!'); return; }
+  if(mode === 'cart' && cart.length === 0){ alert('Your cart is empty!'); return; }
+
+  ppModalMode = mode;
+
+  // Build order summary line in modal header
+  const summaryEl = document.getElementById('pp-modal-summary');
+  if(mode === 'buynow'){
+    const total = (qty * SHIRT_PRICE).toFixed(2);
+    summaryEl.innerHTML = `
+      <img src="${flagUrl(sel.code)}" style="width:36px;height:24px;object-fit:cover;border-radius:3px;border:1px solid rgba(255,255,255,.1)" alt="${sel.name}">
+      <div>
+        <strong>${sel.name}</strong> &nbsp;·&nbsp; Group ${sel.group}
+        &nbsp;·&nbsp; ${shirtSize} &nbsp;·&nbsp; ${colorLabel} &nbsp;·&nbsp; Qty: ${qty}
+      </div>
+      <span class="pp-price">$${total}</span>`;
+  } else {
+    const total = cart.reduce((s,i)=>s+i.qty*SHIRT_PRICE,0).toFixed(2);
+    const lines = cart.map(i=>`${i.qty}× ${i.nation.name} (${i.size})`).join(', ');
+    summaryEl.innerHTML = `
+      <div><strong>Cart:</strong> ${lines}</div>
+      <span class="pp-price">$${total}</span>`;
+  }
+
+  // Clear and re-render PayPal buttons each time
+  document.getElementById('pp-modal-button-container').innerHTML = '';
+  renderPayPalModalButtons();
+
+  document.getElementById('pp-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePayPalModal(){
+  document.getElementById('pp-modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  // Clear buttons so they re-render fresh next open
+  document.getElementById('pp-modal-button-container').innerHTML = '';
+}
+
+// Close modal when clicking overlay background
+document.getElementById('pp-modal-overlay').addEventListener('click', function(e){
+  if(e.target === this) closePayPalModal();
+});
+
+function renderPayPalModalButtons(){
   if(typeof paypal_sdk === 'undefined') return;
 
-  // ── BUY NOW button (order summary panel) ──
   paypal_sdk.Buttons({
-    style:{ layout:'vertical', color:'gold', shape:'rect', label:'buynow', height:45 },
-    onClick(data, actions){
-      if(!sel){ alert('Please select your nation first!'); return actions.reject(); }
-    },
+    style:{ layout:'vertical', color:'gold', shape:'rect', height:48 },
     createOrder(data, actions){
-      const items = buildOrderItems();
+      const items = ppModalMode === 'buynow' ? buildOrderItems() : buildOrderItems();
       return actions.order.create({
         purchase_units:[{
-          description: `WC Groups 2026 — ${sel.name} Group ${sel.group} | ${shirtSize} | ${colorLabel} | Qty: ${qty}`,
+          description: ppModalMode === 'buynow'
+            ? `WC Groups 2026 — ${sel.name} Group ${sel.group} | ${shirtSize} | ${colorLabel} | Qty: ${qty}`
+            : `WC Groups 2026 Cart — ${cart.length} item type(s)`,
           items: items,
           amount:{
             currency_code:'USD',
             value: buildOrderTotal(items),
-            breakdown:{
-              item_total:{ currency_code:'USD', value: buildOrderTotal(items) }
-            }
+            breakdown:{ item_total:{ currency_code:'USD', value: buildOrderTotal(items) } }
           }
         }]
       });
     },
     onApprove(data, actions){
       return actions.order.capture().then(details=>{
-        alert(`Order placed! Thank you, ${details.payer.name.given_name}. We'll start printing your shirt right away!`);
+        closePayPalModal();
+        if(ppModalMode === 'cart'){ cart=[]; renderCart(); closeCart(); }
+        alert(`✅ Order placed! Thank you, ${details.payer.name.given_name}! We'll start printing your shirt(s) right away.`);
       });
     },
-    onError(err){ console.error('PayPal error:', err); alert('Something went wrong with PayPal. Please try again or email kevin@wcgroups.com'); }
-  }).render('#paypal-button-container');
+    onCancel(){ /* user closed PayPal popup — stay on modal so they can retry */ },
+    onError(err){
+      console.error('PayPal error:', err);
+      alert('Something went wrong. Please try again or email kevin@wcgroups.com');
+    }
+  }).render('#pp-modal-button-container');
+}
 
-  // ── CART CHECKOUT button (cart drawer) ──
-  paypal_sdk.Buttons({
-    style:{ layout:'vertical', color:'gold', shape:'rect', label:'checkout', height:45 },
-    onClick(data, actions){
-      if(cart.length === 0){ alert('Your cart is empty!'); return actions.reject(); }
-    },
-    createOrder(data, actions){
-      const items = buildOrderItems();
-      return actions.order.create({
-        purchase_units:[{
-          description:`WC Groups 2026 Cart Order — ${cart.length} item type(s)`,
-          items: items,
-          amount:{
-            currency_code:'USD',
-            value: buildOrderTotal(items),
-            breakdown:{
-              item_total:{ currency_code:'USD', value: buildOrderTotal(items) }
-            }
-          }
-        }]
-      });
-    },
-    onApprove(data, actions){
-      return actions.order.capture().then(details=>{
-        cart = [];
-        renderCart();
-        closeCart();
-        alert(`Order placed! Thank you, ${details.payer.name.given_name}. We'll start printing your shirts right away!`);
-      });
-    },
-    onError(err){ console.error('PayPal error:', err); alert('Something went wrong with PayPal. Please try again or email kevin@wcgroups.com'); }
-  }).render('#paypal-cart-button-container');
+function initPayPalButtons(){
+  // Buttons now render on-demand inside modal — nothing to init at page load
 }
 
 // ── STATE ──
@@ -1487,44 +1584,6 @@ document.getElementById('add-to-cart-btn').addEventListener('click',()=>{
   renderCart();
   openCart();
 });
-
-// ── DETECT PAYPAL CARD FORM EXPAND / COLLAPSE ──
-// Watch for PayPal injecting its card form iframe into the container
-const ppObserver = new MutationObserver(() => {
-  const container = document.getElementById('paypal-button-container');
-  const dismiss   = document.getElementById('paypal-dismiss');
-  const panel     = document.getElementById('order-panel');
-  // PayPal card form adds extra iframes when expanded
-  const iframes   = container ? container.querySelectorAll('iframe') : [];
-  const expanded  = iframes.length > 1;
-  if (dismiss) dismiss.style.display = expanded ? 'block' : 'none';
-  if (expanded && panel) {
-    // Scroll the panel down so the card form and Pay button are visible
-    setTimeout(() => {
-      panel.scrollTo({ top: panel.scrollHeight, behavior: 'smooth' });
-    }, 300);
-  }
-});
-ppObserver.observe(document.body, { childList: true, subtree: true });
-
-function collapsePayPal() {
-  // Click PayPal's own X button inside the card form iframe if present
-  const container = document.getElementById('paypal-button-container');
-  if (!container) return;
-  // Find and click the close/back button PayPal renders
-  const iframes = container.querySelectorAll('iframe');
-  iframes.forEach(iframe => {
-    try {
-      const closeBtn = iframe.contentDocument &&
-        iframe.contentDocument.querySelector('[aria-label="Close"], .back-button, [data-funding-source="card"] .close');
-      if (closeBtn) closeBtn.click();
-    } catch(e) {}
-  });
-  // Re-render the button to reset state
-  document.getElementById('paypal-button-container').innerHTML = '';
-  document.getElementById('paypal-dismiss').style.display = 'none';
-  initPayPalButtons();
-}
 
 // ── INIT ──
 updateAll();
