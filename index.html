@@ -511,6 +511,13 @@ footer{
       <div class="nation-flag-preview" id="flag-preview">
         <span style="font-size:.8rem;color:var(--muted)">Select a nation to preview</span>
       </div>
+      <!-- Social proof cart counter -->
+      <div id="cart-counter" style="display:none;margin-top:10px;padding:8px 12px;
+        background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.25);
+        border-radius:8px;display:flex;align-items:center;gap:8px;font-size:.8rem;">
+        <span style="font-size:1rem">🔥</span>
+        <span id="cart-counter-text" style="color:var(--text);line-height:1.4"></span>
+      </div>
     </div>
 
     <div class="panel" style="margin-bottom:16px">
@@ -1441,7 +1448,10 @@ function updateAll(){
 selectEl.addEventListener('change',()=>{
   const code=selectEl.value;
   sel=code?nations.find(n=>n.code===code):null;
+  // Hide counter if no nation selected
+  if(!sel) document.getElementById('cart-counter').style.display='none';
   updateAll();
+  updateCartCounter();
 });
 
 // ── COLOR SWATCHES ──
@@ -1585,10 +1595,72 @@ document.getElementById('add-to-cart-btn').addEventListener('click',()=>{
   openCart();
 });
 
+// ══════════════════════════════════════════════
+// SOCIAL PROOF CART COUNTER — Realistic simulation
+// Seeded per nation so numbers feel consistent,
+// with slow live drift to feel active
+// ══════════════════════════════════════════════
+
+// Base popularity weights per nation (higher = more interest)
+const nationPopularity = {
+  'br':8,'ar':9,'fr':9,'us':10,'de':8,'es':8,'gb-eng':8,'pt':7,
+  'nl':7,'be':6,'mx':8,'ca':7,'jp':6,'kr':6,'au':5,'uy':6,
+  'co':5,'ec':5,'ma':6,'sn':5,'no':5,'hr':5,'at':5,'gh':4,
+  'dz':4,'eg':4,'ir':4,'sa':4,'tn':4,'nz':3,'py':4,'pa':3,
+  'za':4,'cv':3,'jo':3,'uz':3,'ht':3,'cw':3,'ci':4,'qa':4,
+  'ch':5,'gb-sct':5,'gb-wls':4,
+};
+
+// Seeded random — gives same number for same nation each session
+function seededRand(seed, min, max){
+  const x = Math.sin(seed * 9301 + 49297) * 233280;
+  return min + Math.floor((x - Math.floor(x)) * (max - min + 1));
+}
+
+// Per-nation live counts — built once on load, drift over time
+const liveCounts = {};
+nations.forEach((n, i) => {
+  const pop = nationPopularity[n.code] || 4;
+  const base = seededRand(i + 1, pop * 2, pop * 7);
+  liveCounts[n.code] = base;
+});
+
+// Slowly drift counts upward every 8–20 seconds to simulate activity
+function driftCounts(){
+  const codes = Object.keys(liveCounts);
+  // Increment 1–3 random nations slightly
+  const numToUpdate = 1 + Math.floor(Math.random() * 3);
+  for(let i = 0; i < numToUpdate; i++){
+    const code = codes[Math.floor(Math.random() * codes.length)];
+    if(Math.random() < 0.7) liveCounts[code]++;  // 70% chance goes up
+  }
+  updateCartCounter();
+  setTimeout(driftCounts, 8000 + Math.random() * 12000);
+}
+
+function updateCartCounter(){
+  if(!sel) return;
+  const count = liveCounts[sel.code] || 4;
+  const el    = document.getElementById('cart-counter');
+  const text  = document.getElementById('cart-counter-text');
+  if(!el || !text) return;
+
+  el.style.display = 'flex';
+
+  let msg;
+  if(count >= 20)      msg = `<strong style="color:var(--gold)">${count} people</strong> have this shirt in their cart right now`;
+  else if(count >= 10) msg = `<strong style="color:var(--gold)">${count} others</strong> are looking at this shirt`;
+  else if(count >= 5)  msg = `<strong style="color:var(--gold)">${count} people</strong> have this in their cart`;
+  else                 msg = `<strong style="color:var(--gold)">${count} others</strong> have this saved — order soon!`;
+
+  text.innerHTML = msg;
+}
+
 // ── INIT ──
 updateAll();
 renderCart();
 initPayPalButtons();
+setTimeout(driftCounts, 10000 + Math.random() * 8000); // start drifting after 10–18s
 </script>
 </body>
 </html>
