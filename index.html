@@ -4,6 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WC Groups | FIFA World Cup 2026 Tees</title>
+
+<!-- ── SEO & Open Graph ── -->
+<meta name="description" content="Official supporter tees for every nation in the 2026 FIFA World Cup. 48 nations, 12 groups, full front & back print on Gildan 5000 heavy cotton. Worldwide shipping.">
+<meta name="keywords" content="World Cup 2026 shirt, FIFA 2026 tee, soccer supporter shirt, World Cup group shirt">
+<link rel="canonical" href="https://wcgroups.com/">
+
+<!-- Open Graph (Google, Facebook, iMessage previews) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wcgroups.com/">
+<meta property="og:title" content="WC Groups | FIFA World Cup 2026 Supporter Tees">
+<meta property="og:description" content="Rep your nation at the 2026 World Cup. Professional on-demand printed tees for all 48 nations. $39.99 · Worldwide shipping.">
+<meta property="og:image" content="https://wcgroups.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="WC Groups">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WC Groups | FIFA World Cup 2026 Supporter Tees">
+<meta name="twitter:description" content="Rep your nation at the 2026 World Cup. 48 nations, $39.99, worldwide shipping.">
+<meta name="twitter:image" content="https://wcgroups.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
@@ -311,8 +332,63 @@ footer{
   nav{padding:0 16px}
   .nav-contact{display:none}
 }
+
+/* ── PAYPAL MODAL FIXES ── */
+/* Allow PayPal's iframe/modal to scroll properly and fit viewport */
+body.paypal-open{overflow:hidden}
+#paypal-button-container,
+#paypal-cart-button-container{
+  width:100%;
+  min-height:46px;
+}
+/* Override PayPal's iframe container to be scrollable if needed */
+[data-paypal-smart-button-component],
+.paypal-button-container{
+  max-height:none !important;
+}
+/* PayPal modal overlay — ensure it's scrollable and full viewport */
+.paypal-overlay-context{
+  position:fixed !important;
+  top:0 !important; left:0 !important;
+  width:100vw !important;
+  height:100vh !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch !important;
+  z-index:2000 !important;
+}
+/* Force PayPal popup to reasonable size */
+iframe.component-frame,
+iframe.zoid-component-frame{
+  max-height:96vh !important;
+  overflow-y:auto !important;
+}
+
+/* ── CART & CHECKOUT TEXT CONTRAST FIXES ── */
+.cart-item-name{color:var(--text)}
+.cart-item-meta{color:#7a9ab8}
+.cart-empty span{color:#7a9ab8}
+.cart-subtotal span:first-child{color:#7a9ab8;font-size:.88rem}
+.cart-subtotal-val{color:var(--gold)}
+.cart-note{color:#6a8aaa;font-size:.72rem;line-height:1.6}
+.sr-label{color:#7a9ab8}
+.sr-value{color:var(--text);font-weight:500}
+.summary-total span:first-child{color:var(--text);font-weight:600}
+.paypal-note{color:#6a8aaa;font-size:.73rem;line-height:1.6}
+.paypal-note a{color:#7a9ab8}
+.paypal-note a:hover{color:var(--gold)}
+.cart-header h3{color:var(--gold)}
+.cart-close{color:#7a9ab8}
+.cart-close:hover{color:var(--text)}
+.panel-title{color:var(--gold)}
+.setup-banner{color:var(--gold);background:rgba(201,162,39,.08);border-color:rgba(201,162,39,.3)}
+.nfp-name{color:var(--text)}
+.nfp-group{color:var(--gold)}
+.sn-nation{color:var(--text)}
+.sn-group{color:var(--gold)}
+.color-label{color:#7a9ab8}
+.ci-qty-val{color:var(--text)}
 </style>
-<script src="https://www.paypal.com/sdk/js?client-id=AWvx735NSvdKcXeigUV2lWSg_LarUtnCRZGxqJC1Oxw665s0v3_i8VMlMXgbULafyKSdpF-xAxm4afXL&currency=USD" data-namespace="paypal_sdk"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AWvx735NSvdKcXeigUV2lWSg_LarUtnCRZGxqJC1Oxw665s0v3_i8VMlMXgbULafyKSdpF-xAxm4afXL&currency=USD&intent=capture&disable-funding=venmo,paylater" data-namespace="paypal_sdk"></script>
 </head>
 <body>
 
