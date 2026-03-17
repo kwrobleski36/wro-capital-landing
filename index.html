@@ -333,6 +333,20 @@ footer{
   .nav-contact{display:none}
 }
 
+/* ── ORDER PANEL — scrollable when PayPal card form expands ── */
+.order-panel{
+  position:sticky;
+  top:80px;
+  max-height:calc(100vh - 100px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:var(--border) transparent;
+}
+.order-panel::-webkit-scrollbar{width:4px}
+.order-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.order-panel::-webkit-scrollbar-track{background:transparent}
+
 /* ── PAYPAL MODAL FIXES ── */
 /* Allow PayPal's iframe/modal to scroll properly and fit viewport */
 body.paypal-open{overflow:hidden}
@@ -1000,7 +1014,7 @@ iframe.zoid-component-frame{
   </div>
 
   <!-- RIGHT ORDER SUMMARY -->
-  <div class="panel">
+  <div class="panel order-panel" id="order-panel">
     <div class="panel-title">&#128722; Order Summary</div>
     <div class="summary-nation" id="summary-nation">
       <span style="font-size:.8rem;color:var(--muted)">No nation selected yet</span>
@@ -1029,6 +1043,15 @@ iframe.zoid-component-frame{
 
     <!-- PayPal SDK Buy Now button renders here -->
     <div id="paypal-button-container" style="margin-bottom:4px"></div>
+
+    <!-- Shown when PayPal card form is open — click to close -->
+    <div id="paypal-dismiss" style="display:none;text-align:center;margin-top:8px">
+      <button onclick="collapsePayPal()" style="background:none;border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:.75rem;padding:5px 14px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s"
+        onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'"
+        onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
+        ✕ Close payment form
+      </button>
+    </div>
 
     <p class="paypal-note">
       Shipping calculated at checkout &bull; Worldwide delivery<br>
@@ -1464,6 +1487,44 @@ document.getElementById('add-to-cart-btn').addEventListener('click',()=>{
   renderCart();
   openCart();
 });
+
+// ── DETECT PAYPAL CARD FORM EXPAND / COLLAPSE ──
+// Watch for PayPal injecting its card form iframe into the container
+const ppObserver = new MutationObserver(() => {
+  const container = document.getElementById('paypal-button-container');
+  const dismiss   = document.getElementById('paypal-dismiss');
+  const panel     = document.getElementById('order-panel');
+  // PayPal card form adds extra iframes when expanded
+  const iframes   = container ? container.querySelectorAll('iframe') : [];
+  const expanded  = iframes.length > 1;
+  if (dismiss) dismiss.style.display = expanded ? 'block' : 'none';
+  if (expanded && panel) {
+    // Scroll the panel down so the card form and Pay button are visible
+    setTimeout(() => {
+      panel.scrollTo({ top: panel.scrollHeight, behavior: 'smooth' });
+    }, 300);
+  }
+});
+ppObserver.observe(document.body, { childList: true, subtree: true });
+
+function collapsePayPal() {
+  // Click PayPal's own X button inside the card form iframe if present
+  const container = document.getElementById('paypal-button-container');
+  if (!container) return;
+  // Find and click the close/back button PayPal renders
+  const iframes = container.querySelectorAll('iframe');
+  iframes.forEach(iframe => {
+    try {
+      const closeBtn = iframe.contentDocument &&
+        iframe.contentDocument.querySelector('[aria-label="Close"], .back-button, [data-funding-source="card"] .close');
+      if (closeBtn) closeBtn.click();
+    } catch(e) {}
+  });
+  // Re-render the button to reset state
+  document.getElementById('paypal-button-container').innerHTML = '';
+  document.getElementById('paypal-dismiss').style.display = 'none';
+  initPayPalButtons();
+}
 
 // ── INIT ──
 updateAll();
