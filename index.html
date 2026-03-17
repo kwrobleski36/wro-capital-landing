@@ -1354,7 +1354,7 @@ function checkoutPayPal(){
   submitPayPalForm({
     cmd:'_xclick',
     business:PAYPAL_EMAIL,
-    item_name:`WC Groups 2026 Tee — ${sel.name} (Group ${sel.group})`,
+    item_name:`WC Groups 2026 Tee — ${sel.name} (Group ${sel.group}) | ${colorLabel} | ${shirtSize}`,
     amount:SHIRT_PRICE.toFixed(2),
     quantity:qty,
     currency_code:'USD',
@@ -1384,7 +1384,7 @@ function checkoutCartPayPal(){
   };
   cart.forEach((item,i)=>{
     const n=i+1; // PayPal cart items are 1-indexed
-    fields[`item_name_${n}`]=`WC Groups 2026 Tee — ${item.nation.name} (Group ${item.nation.group})`;
+    fields[`item_name_${n}`]=`WC Groups 2026 Tee — ${item.nation.name} (Group ${item.nation.group}) | ${item.colorLabel} | ${item.size}`;
     fields[`amount_${n}`]=item.price.toFixed(2);
     fields[`quantity_${n}`]=item.qty;
     fields[`on0_${n}`]='Size';
