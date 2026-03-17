@@ -450,6 +450,19 @@ footer{
 .color-label{color:#7a9ab8}
 .ci-qty-val{color:var(--text)}
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T6K5LVYSJZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T6K5LVYSJZ');
+
+  // ── Custom GA4 event helpers ──
+  function gaEvent(name, params){
+    if(typeof gtag !== 'undefined') gtag('event', name, params);
+  }
+</script>
 <script src="https://www.paypal.com/sdk/js?client-id=AWvx735NSvdKcXeigUV2lWSg_LarUtnCRZGxqJC1Oxw665s0v3_i8VMlMXgbULafyKSdpF-xAxm4afXL&currency=USD&intent=capture&disable-funding=venmo,paylater" data-namespace="paypal_sdk"></script>
 </head>
 <body>
@@ -1278,6 +1291,13 @@ function openPayPalModal(mode){
 
   ppModalMode = mode;
 
+  // GA4 begin_checkout event
+  const items = mode === 'buynow'
+    ? [{ item_name: `WC Groups 2026 Tee — ${sel.name}`, item_category: `Group ${sel.group}`, item_variant: `${shirtSize} / ${colorLabel}`, quantity: qty, price: SHIRT_PRICE }]
+    : cart.map(i=>({ item_name: `WC Groups 2026 Tee — ${i.nation.name}`, item_category: `Group ${i.nation.group}`, item_variant: `${i.size} / ${i.colorLabel}`, quantity: i.qty, price: SHIRT_PRICE }));
+  const value = mode === 'buynow' ? qty * SHIRT_PRICE : cart.reduce((s,i)=>s+i.qty*SHIRT_PRICE,0);
+  gaEvent('begin_checkout', { currency:'USD', value, items });
+
   // Build order summary line in modal header
   const summaryEl = document.getElementById('pp-modal-summary');
   if(mode === 'buynow'){
@@ -1341,6 +1361,16 @@ function renderPayPalModalButtons(){
     onApprove(data, actions){
       return actions.order.capture().then(details=>{
         closePayPalModal();
+        const orderItems = ppModalMode === 'buynow'
+          ? [{ item_name: `WC Groups 2026 Tee — ${sel.name}`, item_category: `Group ${sel.group}`, item_variant: `${shirtSize} / ${colorLabel}`, quantity: qty, price: SHIRT_PRICE }]
+          : cart.map(i=>({ item_name: `WC Groups 2026 Tee — ${i.nation.name}`, item_category: `Group ${i.nation.group}`, item_variant: `${i.size} / ${i.colorLabel}`, quantity: i.qty, price: SHIRT_PRICE }));
+        const orderTotal = ppModalMode === 'buynow' ? qty * SHIRT_PRICE : cart.reduce((s,i)=>s+i.qty*SHIRT_PRICE,0);
+        gaEvent('purchase', {
+          transaction_id: details.id,
+          currency: 'USD',
+          value: orderTotal,
+          items: orderItems
+        });
         if(ppModalMode === 'cart'){ cart=[]; renderCart(); closeCart(); }
         alert(`✅ Order placed! Thank you, ${details.payer.name.given_name}! We'll start printing your shirt(s) right away.`);
       });
@@ -1448,10 +1478,10 @@ function updateAll(){
 selectEl.addEventListener('change',()=>{
   const code=selectEl.value;
   sel=code?nations.find(n=>n.code===code):null;
-  // Hide counter if no nation selected
   if(!sel) document.getElementById('cart-counter').style.display='none';
   updateAll();
   updateCartCounter();
+  if(sel) gaEvent('select_nation', { nation: sel.name, group: sel.group });
 });
 
 // ── COLOR SWATCHES ──
@@ -1584,13 +1614,17 @@ function cartRemove(idx){
 // Add to Cart button
 document.getElementById('add-to-cart-btn').addEventListener('click',()=>{
   if(!sel){alert('Please select your nation first!');return;}
-  // Check if same item already in cart
   const existing=cart.find(i=>i.nation.code===sel.code&&i.colorLabel===colorLabel&&i.size===shirtSize);
   if(existing){
     existing.qty=Math.min(20,existing.qty+qty);
   } else {
     cart.push({nation:sel,color:shirtColor,colorLabel,size:shirtSize,qty,price:SHIRT_PRICE});
   }
+  gaEvent('add_to_cart', {
+    currency: 'USD',
+    value: qty * SHIRT_PRICE,
+    items: [{ item_name: `WC Groups 2026 Tee — ${sel.name}`, item_category: `Group ${sel.group}`, item_variant: `${shirtSize} / ${colorLabel}`, quantity: qty, price: SHIRT_PRICE }]
+  });
   renderCart();
   openCart();
 });
