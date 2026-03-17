@@ -161,11 +161,11 @@ nav{
 }
 .hero h1 em{font-style:normal;color:var(--gold);display:block}
 .hero-sub{margin-top:16px;font-size:1rem;font-weight:300;color:var(--muted);letter-spacing:.02em}
-.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:20px}
+.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:20px}
 .pill{
-  font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  font-size:.62rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;
   border:1px solid var(--border);background:rgba(255,255,255,.03);
-  padding:5px 14px;border-radius:20px;color:var(--muted);
+  padding:3px 10px;border-radius:16px;color:var(--muted);
 }
 .creator{
   position:relative;z-index:1;max-width:1240px;margin:0 auto;
@@ -196,20 +196,6 @@ nav{
 .nfp-group{font-size:.75rem;color:var(--gold);font-weight:600}
 .color-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:4px;max-height:220px;overflow-y:auto;padding-right:2px}
 .color-grid::-webkit-scrollbar{width:4px}.color-grid::-webkit-scrollbar-track{background:var(--card2);border-radius:2px}.color-grid::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-/* Gildan tooltip */
-.gildan-tip{position:relative;cursor:help;border-bottom:1px dashed var(--gold);color:var(--text)}
-.gildan-tip .gtip-box{
-  display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
-  width:220px;background:#0a1828;border:1px solid var(--border);border-radius:10px;
-  padding:12px 14px;z-index:200;pointer-events:none;
-  box-shadow:0 8px 32px rgba(0,0,0,.6);
-}
-.gildan-tip:hover .gtip-box{display:block}
-.gtip-box h4{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
-.gtip-box ul{list-style:none;display:flex;flex-direction:column;gap:4px}
-.gtip-box ul li{font-size:.75rem;color:var(--muted);display:flex;align-items:flex-start;gap:6px}
-.gtip-box ul li::before{content:'✓';color:var(--teal);flex-shrink:0;font-size:.7rem;margin-top:1px}
-.gtip-box .gtip-arrow{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:#0a1828;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
 .color-swatch{
   width:100%;aspect-ratio:1;border-radius:6px;cursor:pointer;
   border:2px solid transparent;transition:transform .15s,border-color .15s;
@@ -335,7 +321,7 @@ footer{
   <h1>Rep Your <em>Nation</em></h1>
   <p class="hero-sub">Official supporter tees for every nation in the 2026 World Cup</p>
   <div class="hero-pills">
-    <span class="pill">Gildan 5000 Heavy Cotton
+    <span class="pill gildan-pill">Gildan 5000 Heavy Cotton
       <div class="gtip">
         <h4>Gildan 5000 Heavy Cotton</h4>
         <ul>
@@ -347,6 +333,13 @@ footer{
           <li>Tear-away label for comfort</li>
           <li>Available in S–3XL</li>
         </ul>
+        <h4 style="margin-top:10px">Professional On-Demand Printing</h4>
+        <ul>
+          <li>Printed by Jakprints, Cleveland OH</li>
+          <li>Direct-to-garment (DTG) process</li>
+          <li>Vibrant, wash-resistant full-color prints</li>
+          <li>Each shirt printed fresh on demand</li>
+        </ul>
         <div class="gtip-arrow"></div>
       </div>
     </span>
@@ -354,19 +347,6 @@ footer{
     <span class="pill">12 Groups</span>
     <span class="pill">Worldwide Shipping</span>
     <span class="pill">Full Front &amp; Back Print</span>
-    <span class="pill gildan-pill">Professional On-Demand Printing
-      <div class="gtip">
-        <h4>Industry-Standard Print Quality</h4>
-        <ul>
-          <li>Printed by Jakprints — a professional print house in Cleveland, OH</li>
-          <li>Industry-standard direct-to-garment (DTG) process</li>
-          <li>Vibrant, wash-resistant full-color prints</li>
-          <li>Each shirt printed fresh on demand — not mass-produced stock</li>
-          <li>Same quality used by major brands &amp; sports teams</li>
-        </ul>
-        <div class="gtip-arrow"></div>
-      </div>
-    </span>
     <span class="pill" style="border-color:var(--gold);color:var(--gold);background:rgba(201,162,39,.08)">$39.99 per shirt</span>
   </div>
 </section>
