@@ -312,6 +312,7 @@ footer{
   .nav-contact{display:none}
 }
 </style>
+<script src="https://www.paypal.com/sdk/js?client-id=AWvx735NSvdKcXeigUV2lWSg_LarUtnCRZGxqJC1Oxw665s0v3_i8VMlMXgbULafyKSdpF-xAxm4afXL&currency=USD" data-namespace="paypal_sdk"></script>
 </head>
 <body>
 
@@ -943,19 +944,6 @@ footer{
       <span class="price-val">$<span id="price-display">39.99</span></span>
     </div>
 
-    <div class="setup-banner">
-      &#9888;&#65039; Store launching soon!<br>
-      Questions? <a href="mailto:kevin@wcgroups.com" style="color:var(--gold)">kevin@wcgroups.com</a>
-    </div>
-
-    <!--
-      ── PAYPAL SETUP ──────────────────────────────────────
-      1. Find your PayPal.me username at paypal.com/paypalme
-      2. Replace YOUR_PAYPALME_USERNAME below with it
-      3. Replace 00.00 below (x2) with your shirt price
-      4. Remove the .setup-banner div above when live
-      ─────────────────────────────────────────────────────
-    -->
     <button class="add-to-cart-btn" id="add-to-cart-btn">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
@@ -963,13 +951,8 @@ footer{
       Add to Cart
     </button>
 
-    <button class="paypal-btn" id="paypal-btn" onclick="checkoutPayPal()">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7.5 21l.9-5.7M7.5 21H4.8L6.9 7.5h5.4c2.1 0 3.6.9 3.6 3 0 3-2.1 4.5-4.8 4.5H8.7L7.5 21z" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M10.5 18l.9-5.7m0 0H8.7m2.7 0h1.8c2.7 0 4.8-1.5 4.8-4.5 0-2.1-1.5-3-3.6-3H9.6L7.5 15" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
-      </svg>
-      Buy Now via PayPal
-    </button>
+    <!-- PayPal SDK Buy Now button renders here -->
+    <div id="paypal-button-container" style="margin-bottom:4px"></div>
 
     <p class="paypal-note">
       Shipping calculated at checkout &bull; Worldwide delivery<br>
@@ -1004,12 +987,8 @@ footer{
       <span>Subtotal</span>
       <span class="cart-subtotal-val" id="cart-subtotal">$0.00</span>
     </div>
-    <button class="cart-checkout-btn" id="cart-checkout-btn" onclick="checkoutCartPayPal()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7.5 21l.9-5.7M7.5 21H4.8L6.9 7.5h5.4c2.1 0 3.6.9 3.6 3 0 3-2.1 4.5-4.8 4.5H8.7L7.5 21z" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Checkout via PayPal
-    </button>
+    <!-- PayPal SDK Cart Checkout button renders here -->
+    <div id="paypal-cart-button-container"></div>
     <p class="cart-note">Shipping &amp; taxes calculated at checkout</p>
   </div>
 </div>
@@ -1080,8 +1059,100 @@ const nations=[
 // ══════════════════════════════════════════════
 // PAYPAL CONFIG — replace with your details
 // ══════════════════════════════════════════════
-const PAYPAL_LINK = 'https://www.paypal.com/ncp/payment/H2FC5NG24JNJA';
 const SHIRT_PRICE = 39.99;
+
+// ── PAYPAL SDK SETUP ──
+function buildOrderItems(){
+  // Called by both Buy Now and Cart checkout
+  // Returns PayPal order items array from current cart or single selection
+  return cart.length > 0
+    ? cart.map(i=>({
+        name: `WC Groups 2026 Tee — ${i.nation.name} (Group ${i.nation.group})`,
+        description: `Size: ${i.size} | Color: ${i.colorLabel} | Full Front + Back Print | Gildan 5000`,
+        unit_amount:{ currency_code:'USD', value: SHIRT_PRICE.toFixed(2) },
+        quantity: String(i.qty),
+        category:'PHYSICAL_GOODS'
+      }))
+    : [{
+        name: `WC Groups 2026 Tee — ${sel ? sel.name+' (Group '+sel.group+')' : 'WC Groups'}`,
+        description: `Size: ${shirtSize} | Color: ${colorLabel} | Full Front + Back Print | Gildan 5000`,
+        unit_amount:{ currency_code:'USD', value: SHIRT_PRICE.toFixed(2) },
+        quantity: String(qty),
+        category:'PHYSICAL_GOODS'
+      }];
+}
+
+function buildOrderTotal(items){
+  const total = items.reduce((s,i)=>s + parseFloat(i.unit_amount.value)*parseInt(i.quantity), 0);
+  return total.toFixed(2);
+}
+
+function initPayPalButtons(){
+  if(typeof paypal_sdk === 'undefined') return;
+
+  // ── BUY NOW button (order summary panel) ──
+  paypal_sdk.Buttons({
+    style:{ layout:'vertical', color:'gold', shape:'rect', label:'buynow', height:45 },
+    onClick(data, actions){
+      if(!sel){ alert('Please select your nation first!'); return actions.reject(); }
+    },
+    createOrder(data, actions){
+      const items = buildOrderItems();
+      return actions.order.create({
+        purchase_units:[{
+          description: `WC Groups 2026 — ${sel.name} Group ${sel.group} | ${shirtSize} | ${colorLabel} | Qty: ${qty}`,
+          items: items,
+          amount:{
+            currency_code:'USD',
+            value: buildOrderTotal(items),
+            breakdown:{
+              item_total:{ currency_code:'USD', value: buildOrderTotal(items) }
+            }
+          }
+        }]
+      });
+    },
+    onApprove(data, actions){
+      return actions.order.capture().then(details=>{
+        alert(`Order placed! Thank you, ${details.payer.name.given_name}. We'll start printing your shirt right away!`);
+      });
+    },
+    onError(err){ console.error('PayPal error:', err); alert('Something went wrong with PayPal. Please try again or email kevin@wcgroups.com'); }
+  }).render('#paypal-button-container');
+
+  // ── CART CHECKOUT button (cart drawer) ──
+  paypal_sdk.Buttons({
+    style:{ layout:'vertical', color:'gold', shape:'rect', label:'checkout', height:45 },
+    onClick(data, actions){
+      if(cart.length === 0){ alert('Your cart is empty!'); return actions.reject(); }
+    },
+    createOrder(data, actions){
+      const items = buildOrderItems();
+      return actions.order.create({
+        purchase_units:[{
+          description:`WC Groups 2026 Cart Order — ${cart.length} item type(s)`,
+          items: items,
+          amount:{
+            currency_code:'USD',
+            value: buildOrderTotal(items),
+            breakdown:{
+              item_total:{ currency_code:'USD', value: buildOrderTotal(items) }
+            }
+          }
+        }]
+      });
+    },
+    onApprove(data, actions){
+      return actions.order.capture().then(details=>{
+        cart = [];
+        renderCart();
+        closeCart();
+        alert(`Order placed! Thank you, ${details.payer.name.given_name}. We'll start printing your shirts right away!`);
+      });
+    },
+    onError(err){ console.error('PayPal error:', err); alert('Something went wrong with PayPal. Please try again or email kevin@wcgroups.com'); }
+  }).render('#paypal-cart-button-container');
+}
 
 // ── STATE ──
 let sel=null, shirtColor="#ffffff", colorLabel="White", shirtSize="M", qty=1;
@@ -1318,25 +1389,10 @@ document.getElementById('add-to-cart-btn').addEventListener('click',()=>{
   openCart();
 });
 
-// ── BUY NOW (single item) ──
-function checkoutPayPal(){
-  if(!sel){alert('Please select your nation first!');return;}
-  const note=encodeURIComponent(`WC Groups 2026 Tee | Nation: ${sel.name} | Group: ${sel.group} | Size: ${shirtSize} | Color: ${colorLabel} | Qty: ${qty} | Total: $${(qty*SHIRT_PRICE).toFixed(2)}`);
-  window.open(`${PAYPAL_LINK}?custom=${note}`,'_blank');
-}
-
-// ── CART CHECKOUT ──
-function checkoutCartPayPal(){
-  if(cart.length===0)return;
-  const items=cart.map(i=>`${i.qty}x ${i.nation.name} (Group ${i.nation.group}, ${i.size}, ${i.colorLabel}) $${(i.qty*SHIRT_PRICE).toFixed(2)}`).join(' | ');
-  const total=cart.reduce((s,i)=>s+i.qty*SHIRT_PRICE,0);
-  const note=encodeURIComponent(`WC Groups 2026 | ${items} | Order Total: $${total.toFixed(2)}`);
-  window.open(`${PAYPAL_LINK}?custom=${note}`,'_blank');
-}
-
 // ── INIT ──
 updateAll();
 renderCart();
+initPayPalButtons();
 </script>
 </body>
 </html>
