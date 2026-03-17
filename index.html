@@ -282,6 +282,19 @@ footer{
 .footer-sub{font-size:.8rem;color:var(--muted);line-height:1.8}
 .footer-sub a{color:var(--muted);text-decoration:none;transition:color .2s}
 .footer-sub a:hover{color:var(--gold)}
+.footer-tip{position:relative;cursor:help;border-bottom:1px dashed var(--muted)}
+.footer-tip:hover{border-bottom-color:var(--gold)}
+.footer-tip .ftip{
+  display:none;position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);
+  width:260px;background:#0a1828;border:1px solid var(--border);border-radius:10px;
+  padding:14px 16px;z-index:300;pointer-events:none;
+  box-shadow:0 8px 32px rgba(0,0,0,.7);text-align:left;
+}
+.footer-tip:hover .ftip{display:block}
+.ftip-title{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.08em;color:var(--gold);margin-bottom:8px}
+.ftip p{font-size:.72rem;color:var(--muted);line-height:1.5;margin-bottom:6px}
+.ftip p:last-child{margin-bottom:0}
+.ftip-arrow{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:#0a1828;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
 @media(max-width:960px){
   .creator{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
   .preview-center{grid-column:span 2;order:-1}
@@ -986,7 +999,24 @@ footer{
     Wro Capital Groups &nbsp;&bull;&nbsp; World Cup 2026 Official Supporter Merchandise<br>
     Printed by Jakprints, Cleveland OH &nbsp;&bull;&nbsp;
     <a href="mailto:kevin@wcgroups.com">kevin@wcgroups.com</a>
-    &nbsp;&bull;&nbsp; <a href="#">Privacy</a> &nbsp;&bull;&nbsp; <a href="#">Returns</a><br>
+    &nbsp;&bull;&nbsp;
+    <span class="footer-tip">Privacy
+      <span class="ftip">
+        <div class="ftip-title">Privacy</div>
+        <p>We collect only what's needed to process your order: name, shipping address, email, and payment via PayPal. We never sell or share your personal information with third parties.</p>
+        <p>Questions? Email kevin@wcgroups.com.</p>
+        <span class="ftip-arrow"></span>
+      </span>
+    </span>
+    &nbsp;&bull;&nbsp;
+    <span class="footer-tip">Returns
+      <span class="ftip">
+        <div class="ftip-title">Returns &amp; Exchanges</div>
+        <p>Each shirt is printed on demand. We accept returns or reprints for defective or incorrect items within 14 days of delivery. Contact us with your order details and a photo of the issue.</p>
+        <p>Email kevin@wcgroups.com to start a return.</p>
+        <span class="ftip-arrow"></span>
+      </span>
+    </span><br>
     <span style="font-size:.7rem;opacity:.5;margin-top:4px;display:block">
       &copy; 2026 Wro Capital Groups. WC Groups is not affiliated with FIFA.
       FIFA World Cup 2026&trade; is a trademark of FIFA. Flag images from flagcdn.com.
